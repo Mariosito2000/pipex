@@ -6,13 +6,21 @@
 #    By: marias-e <marias-e@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/05 16:14:13 by marias-e          #+#    #+#              #
-#    Updated: 2023/02/20 16:16:38 by marias-e         ###   ########.fr        #
+#    Updated: 2023/02/24 15:45:36 by marias-e         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SRCS	=	$(wildcard *.c)
+SRCS	=	SRCS/ft_check_inputs.c \
+			SRCS/ft_execute.c \
+			SRCS/ft_exit.c \
+			SRCS/ft_manage_env.c \
+			SRCS/main.c
 
-BONUS_SRCS	=	$(wildcard *.c)
+BONUS_SRCS	=	BONUS_SRCS/ft_check_inputs.c \
+				BONUS_SRCS/ft_execute.c \
+				BONUS_SRCS/ft_exit.c \
+				BONUS_SRCS/ft_manage_env.c \
+				BONUS_SRCS/main.c
 
 OBJS 	=	$(addprefix $(O_DIR)/, $(SRCS:.c=.o))
 
@@ -61,7 +69,7 @@ clean:
 	@	echo "\n\033[31m[Objs DELETED]\033\n"
 
 fclean:		clean
-	@	rm -rf ${O_DIR} rm -rf ${BO_DIR} rm push_swap rm checker && cd $(L_DIR) && $(MAKE) fclean
+	@	rm -rf ${O_DIR} rm -rf ${BO_DIR} rm ${NAME} rm ${NAME_BONUS} && cd $(L_DIR) && $(MAKE) fclean
 	@	echo "\n\033[31m[FCLEAN DONE]\033\n"
 
 re:		fclean all
