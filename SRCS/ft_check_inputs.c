@@ -6,7 +6,7 @@
 /*   By: marias-e <marias-e@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/16 11:42:48 by marias-e          #+#    #+#             */
-/*   Updated: 2023/02/24 15:31:09 by marias-e         ###   ########.fr       */
+/*   Updated: 2023/02/24 16:17:58 by marias-e         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ static void	ft_check_inputs_aux(char **argv, char **path,
 		}
 		i++;
 	}
-	if (access(argv[i], W_OK))
+	if (access(argv[i], W_OK) && !access(argv[i], F_OK))
 		ft_write_failure(argv, commands, i);
 	else if (i != 3 || !access(argv[1], R_OK))
 		commands[i - 3] = ft_check_command(com[0], path);

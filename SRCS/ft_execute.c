@@ -6,24 +6,33 @@
 /*   By: marias-e <marias-e@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/20 12:53:07 by marias-e          #+#    #+#             */
-/*   Updated: 2023/02/24 15:47:54 by marias-e         ###   ########.fr       */
+/*   Updated: 2023/02/24 16:14:42 by marias-e         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
+
+static char	**ft_split_com(char **argv, int i)
+{
+	char	**com_split;
+
+	com_split = ft_split(argv[i + 2], ' ');
+	if (!com_split)
+		ft_exit(1);
+	return (com_split);
+}
 
 static void	ft_child(char **argv, char **commands, int i, int *fd)
 {
 	char	**com_split;
 	int		f;
 
-	com_split = ft_split(argv[i + 2], ' ');
-	if (!com_split)
-		ft_exit(1);
+	com_split = ft_split_com(argv, i);
 	close(fd[0]);
-	if (!argv[i + 4] && !access(argv[i + 3], W_OK))
+	if (!argv[i + 4] && (!access(argv[i + 3], W_OK)
+			|| (access(argv[i + 3], F_OK))))
 	{
-		f = open(argv[i + 3], O_WRONLY | O_CREAT | O_TRUNC | O_NOFOLLOW);
+		f = open(argv[i + 3], O_WRONLY | O_CREAT | O_TRUNC | O_NOFOLLOW, 0644);
 		if (f == -1)
 			ft_exit(2);
 		if (dup2(f, STDOUT_FILENO) == -1)
