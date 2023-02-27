@@ -1,39 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_exit.c                                          :+:      :+:    :+:   */
+/*   ft_manage_pids.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: marias-e <marias-e@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/14 16:43:44 by marias-e          #+#    #+#             */
-/*   Updated: 2023/02/27 11:00:02 by marias-e         ###   ########.fr       */
+/*   Created: 2023/02/27 11:33:17 by marias-e          #+#    #+#             */
+/*   Updated: 2023/02/27 11:40:12 by marias-e         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-/* 
-* Exit function.
-*
-*	0 - clean exit
-*	1 - manual error exit
-*	2 - system error exit
-*
-* Parameters:
-* reason  -  Exit reason.
-*/
-void	ft_exit(int reason)
+void	ft_manage_pids(pid_t *pid, int argc)
 {
-	if (reason == 0)
-		exit(0);
-	else if (reason == 1)
+	int	i;
+
+	i = 0;
+	while (i < argc - 3)
 	{
-		write(2, "Error\n", 6);
-		exit(1);
+		waitpid(pid[i], NULL, 0);
+		i++;
 	}
-	else if (reason == 2)
-	{
-		strerror(errno);
-		exit(2);
-	}
+	if (pid)
+		free(pid);
 }

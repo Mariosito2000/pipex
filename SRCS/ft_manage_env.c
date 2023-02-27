@@ -6,7 +6,7 @@
 /*   By: marias-e <marias-e@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/14 17:15:15 by marias-e          #+#    #+#             */
-/*   Updated: 2023/02/20 16:49:43 by marias-e         ###   ########.fr       */
+/*   Updated: 2023/02/27 11:16:08 by marias-e         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ static void	ft_set_terminator(char **path)
 		temp = path[i];
 		path[i] = ft_strjoin(path[i], "/");
 		if (!path[i])
-			ft_exit(1);
+			ft_exit(2);
 		free(temp);
 		i++;
 	}
@@ -42,12 +42,14 @@ char	**ft_manage_env(char **env)
 		{
 			path = ft_split(env[i] + 5, ':');
 			if (!path)
-				ft_exit(1);
+				ft_exit(2);
 			break ;
 		}
 		i++;
 	}
 	if (path)
 		ft_set_terminator(path);
+	else
+		ft_exit(1);
 	return (path);
 }

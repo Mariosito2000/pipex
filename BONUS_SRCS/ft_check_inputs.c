@@ -6,7 +6,7 @@
 /*   By: marias-e <marias-e@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/16 11:42:48 by marias-e          #+#    #+#             */
-/*   Updated: 2023/02/24 16:17:58 by marias-e         ###   ########.fr       */
+/*   Updated: 2023/02/25 11:03:31 by marias-e         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,8 @@ static void	ft_check_inputs_aux(char **argv, char **path,
 	}
 	if (access(argv[i], W_OK) && !access(argv[i], F_OK))
 		ft_write_failure(argv, commands, i);
-	else if (i != 3 || !access(argv[1], R_OK))
+	else if (i != 3 || !access(argv[1], R_OK)
+		|| !ft_strncmp(argv[1], "here_doc", 9))
 		commands[i - 3] = ft_check_command(com[0], path);
 	ft_free_split(com);
 }
@@ -73,7 +74,7 @@ void	ft_check_inputs(char **argv, char **path, char **commands)
 	int		i;
 
 	i = 2;
-	if (access(argv[1], R_OK))
+	if (ft_strncmp(argv[1], "here_doc", 9) && access(argv[1], R_OK))
 	{
 		commands[0] = ft_strdup("NO");
 		if (!commands[0])
@@ -81,5 +82,7 @@ void	ft_check_inputs(char **argv, char **path, char **commands)
 		perror(argv[1]);
 		i++;
 	}
+	else if (!ft_strncmp(argv[1], "here_doc", 9))
+		i++;
 	ft_check_inputs_aux(argv, path, commands, i);
 }

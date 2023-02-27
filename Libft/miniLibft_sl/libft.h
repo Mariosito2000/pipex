@@ -6,7 +6,7 @@
 /*   By: marias-e <marias-e@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 11:01:24 by marias-e          #+#    #+#             */
-/*   Updated: 2023/02/20 12:59:16 by marias-e         ###   ########.fr       */
+/*   Updated: 2023/02/27 10:42:28 by marias-e         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,6 @@ void				ft_lstclear(t_list **lst, void (*del)(int));
 void				ft_lstiter(t_list *lst, int (*f)(int));
 t_list				*ft_lstmap(t_list *lst,
 						int (*f)(int), void (*del)(int));
-
 
 void				ft_free_split(char **array);
 #endif

@@ -6,7 +6,7 @@
 /*   By: marias-e <marias-e@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/14 11:55:28 by marias-e          #+#    #+#             */
-/*   Updated: 2023/02/24 15:40:07 by marias-e         ###   ########.fr       */
+/*   Updated: 2023/02/27 12:38:25 by marias-e         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,11 +26,18 @@
 # include "../Libft/get_next_line_sl/get_next_line.h"
 # include "../Libft/ft_printf_sl/ft_printf.h"
 
+typedef struct s_ls
+{
+	char	**env;
+	char	**commands;
+}	t_ls;
+
 void		ft_exit(int reason);
 
 char		**ft_manage_env(char **env);
 void		ft_check_inputs(char **argv, char **path, char **commands);
 
-void		ft_execute(int argc, char **argv, char **commands);
+void		ft_execute(int argc, char **argv, char **commands, char **env);
+void		ft_manage_pids(pid_t *pid, int argc);
 
 #endif

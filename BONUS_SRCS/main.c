@@ -6,7 +6,7 @@
 /*   By: marias-e <marias-e@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/14 11:39:27 by marias-e          #+#    #+#             */
-/*   Updated: 2023/02/25 10:35:45 by marias-e         ###   ########.fr       */
+/*   Updated: 2023/02/27 12:39:36 by marias-e         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,6 @@ int	main(int argc, char **argv, char **env)
 	}
 	path = ft_manage_env(env);
 	ft_check_inputs(argv, path, commands);
-	ft_execute(argc, argv, commands);
+	ft_execute(argc, argv, commands, env);
 	ft_exit(0);
 }

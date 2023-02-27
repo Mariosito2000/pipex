@@ -6,7 +6,7 @@
 /*   By: marias-e <marias-e@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/16 11:42:48 by marias-e          #+#    #+#             */
-/*   Updated: 2023/02/24 16:17:58 by marias-e         ###   ########.fr       */
+/*   Updated: 2023/02/27 13:20:26 by marias-e         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static char	*ft_check_command(char *command, char **path)
 	{
 		temp = ft_strjoin(path[i], command);
 		if (!temp)
-			ft_exit(1);
+			ft_exit(2);
 		if (!access(temp, F_OK))
 			if (!access(temp, X_OK))
 				return (temp);
@@ -40,7 +40,7 @@ static void	ft_write_failure(char **argv, char **commands, int i)
 		free(commands[i - 3]);
 	commands[i - 3] = ft_strdup("NO");
 	if (!commands[i - 3])
-		ft_exit(1);
+		ft_exit(2);
 	perror(argv[i]);
 }
 
@@ -53,7 +53,7 @@ static void	ft_check_inputs_aux(char **argv, char **path,
 	{
 		com = ft_split(argv[i], ' ');
 		if (!com)
-			ft_exit(1);
+			ft_exit(2);
 		if (argv[i + 2])
 		{
 			commands[i - 2] = ft_check_command(com[0], path);
@@ -77,7 +77,7 @@ void	ft_check_inputs(char **argv, char **path, char **commands)
 	{
 		commands[0] = ft_strdup("NO");
 		if (!commands[0])
-			ft_exit(1);
+			ft_exit(2);
 		perror(argv[1]);
 		i++;
 	}

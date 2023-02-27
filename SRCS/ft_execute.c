@@ -6,7 +6,7 @@
 /*   By: marias-e <marias-e@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/20 12:53:07 by marias-e          #+#    #+#             */
-/*   Updated: 2023/02/24 16:14:42 by marias-e         ###   ########.fr       */
+/*   Updated: 2023/02/27 12:36:52 by marias-e         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,11 @@ static char	**ft_split_com(char **argv, int i)
 
 	com_split = ft_split(argv[i + 2], ' ');
 	if (!com_split)
-		ft_exit(1);
+		ft_exit(2);
 	return (com_split);
 }
 
-static void	ft_child(char **argv, char **commands, int i, int *fd)
+static void	ft_child(char **argv, t_ls	help, int i, int *fd)
 {
 	char	**com_split;
 	int		f;
@@ -42,11 +42,12 @@ static void	ft_child(char **argv, char **commands, int i, int *fd)
 	else if (dup2(fd[1], STDOUT_FILENO) == -1)
 		ft_exit(2);
 	close(fd[1]);
-	if (!ft_strncmp(commands[i], "NO", 3) || (i == 0 && access(argv[1], R_OK))
+	if (!ft_strncmp(help.commands[i], "NO", 3)
+		|| (i == 0 && access(argv[1], R_OK))
 		|| (!argv[i + 4] && access(argv[i + 3], W_OK)))
-		ft_exit(0);
+		ft_exit(2);
 	else
-		if (execve(commands[i], com_split, 0))
+		if (execve(help.commands[i], com_split, help.env))
 			ft_exit(2);
 }
 
@@ -74,12 +75,15 @@ static void	ft_open_infile(char **argv, int	*j)
 	}
 }
 
-void	ft_execute(int argc, char **argv, char **commands)
+void	ft_execute(int argc, char **argv, char **commands, char **env)
 {
 	int		i;
 	int		fd[2];
 	pid_t	*pid;
+	t_ls	help;
 
+	help.commands = commands;
+	help.env = env;
 	pid = malloc(sizeof(pid_t) * (argc - 3));
 	ft_open_infile(argv, &i);
 	while (i < argc - 3)
@@ -90,15 +94,10 @@ void	ft_execute(int argc, char **argv, char **commands)
 		if (pid[i] == -1)
 			ft_exit(2);
 		if (pid[i] == 0)
-			ft_child(argv, commands, i, fd);
+			ft_child(argv, help, i, fd);
 		else
 			ft_father(fd);
 		i++;
 	}
-	i = 0;
-	while (i < argc - 3)
-	{
-		waitpid(pid[i], NULL, 0);
-		i++;
-	}
+	ft_manage_pids(pid, argc);
 }

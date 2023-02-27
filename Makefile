@@ -6,7 +6,7 @@
 #    By: marias-e <marias-e@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/05 16:14:13 by marias-e          #+#    #+#              #
-#    Updated: 2023/02/24 15:45:36 by marias-e         ###   ########.fr        #
+#    Updated: 2023/02/27 11:38:06 by marias-e         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,12 +14,15 @@ SRCS	=	SRCS/ft_check_inputs.c \
 			SRCS/ft_execute.c \
 			SRCS/ft_exit.c \
 			SRCS/ft_manage_env.c \
+			SRCS/ft_manage_pids.c \
 			SRCS/main.c
 
 BONUS_SRCS	=	BONUS_SRCS/ft_check_inputs.c \
 				BONUS_SRCS/ft_execute.c \
 				BONUS_SRCS/ft_exit.c \
 				BONUS_SRCS/ft_manage_env.c \
+				BONUS_SRCS/ft_here_doc.c \
+				BONUS_SRCS/ft_manage_pids.c \
 				BONUS_SRCS/main.c
 
 OBJS 	=	$(addprefix $(O_DIR)/, $(SRCS:.c=.o))
