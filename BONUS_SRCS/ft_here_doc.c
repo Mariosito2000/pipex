@@ -6,7 +6,7 @@
 /*   By: marias-e <marias-e@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/25 11:28:00 by marias-e          #+#    #+#             */
-/*   Updated: 2023/02/27 12:16:31 by marias-e         ###   ########.fr       */
+/*   Updated: 2023/02/27 17:31:04 by marias-e         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@ void	ft_here_doc(char **argv)
 	int		fd;
 	char	*line;
 
-	printf("limit = %s\n", argv[2]);
 	fd = open(".temp", O_WRONLY | O_CREAT | O_APPEND | O_NOFOLLOW, 0777);
 	if (fd < 0)
 		ft_exit(2);
