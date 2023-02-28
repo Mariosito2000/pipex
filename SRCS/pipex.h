@@ -6,7 +6,7 @@
 /*   By: marias-e <marias-e@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/14 11:55:28 by marias-e          #+#    #+#             */
-/*   Updated: 2023/02/27 12:38:25 by marias-e         ###   ########.fr       */
+/*   Updated: 2023/02/28 13:46:38 by marias-e         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,5 +39,6 @@ void		ft_check_inputs(char **argv, char **path, char **commands);
 
 void		ft_execute(int argc, char **argv, char **commands, char **env);
 void		ft_manage_pids(pid_t *pid, int argc);
+pid_t		*ft_pid_malloc(int argc);
 
 #endif

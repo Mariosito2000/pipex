@@ -6,7 +6,7 @@
 /*   By: marias-e <marias-e@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/27 11:33:17 by marias-e          #+#    #+#             */
-/*   Updated: 2023/02/27 11:40:12 by marias-e         ###   ########.fr       */
+/*   Updated: 2023/02/28 13:46:57 by marias-e         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,4 +24,14 @@ void	ft_manage_pids(pid_t *pid, int argc)
 	}
 	if (pid)
 		free(pid);
+}
+
+pid_t	*ft_pid_malloc(int argc)
+{
+	pid_t	*pid;
+
+	pid = malloc(sizeof(pid_t) * (argc - 3));
+	if (!pid)
+		ft_exit(2);
+	return (pid);
 }

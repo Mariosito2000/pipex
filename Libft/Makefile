@@ -6,7 +6,7 @@
 #    By: marias-e <marias-e@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/22 10:17:43 by marias-e          #+#    #+#              #
-#    Updated: 2023/02/20 13:00:36 by marias-e         ###   ########.fr        #
+#    Updated: 2023/02/28 13:35:58 by marias-e         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -80,7 +80,7 @@ $(O_DIR)/%.o: %.c
 
 ${NAME}:	${OBJS}
 	@	ar rc ${NAME} ${OBJS}
-	@	echo "\n\033[92m[Libft COMPILED SUCCESSFULY]\033\n[0m"
+	@	echo "\n\033[92m[Libft COMPILED SUCCESSFULY]\033\n"
 
 all:		${NAME}
 

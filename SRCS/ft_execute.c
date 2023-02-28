@@ -6,7 +6,7 @@
 /*   By: marias-e <marias-e@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/20 12:53:07 by marias-e          #+#    #+#             */
-/*   Updated: 2023/02/27 12:36:52 by marias-e         ###   ########.fr       */
+/*   Updated: 2023/02/28 13:40:10 by marias-e         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,7 @@ void	ft_execute(int argc, char **argv, char **commands, char **env)
 
 	help.commands = commands;
 	help.env = env;
-	pid = malloc(sizeof(pid_t) * (argc - 3));
+	pid = ft_pid_malloc(argc);
 	ft_open_infile(argv, &i);
 	while (i < argc - 3)
 	{
